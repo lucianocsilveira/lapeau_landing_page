@@ -151,7 +151,6 @@ export default function Home() {
         <div className="editorial-frame">
           <div className="perfume-crop">
             <img
-              data-parallax="0.045"
               src="/redes-sociais_1.png"
               alt="Frasco La Peau sobre pedra clara com uma pétala rosé"
             />

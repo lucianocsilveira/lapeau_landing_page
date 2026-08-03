@@ -88,7 +88,7 @@ Os arquivos utilizados pela página ficam em `public/`:
 | `public/brand-board.png` | Prancha completa da identidade visual |
 | `public/embalagens.png` | Imagem principal do hero |
 | `public/monograma-lp.png` | Monograma oficial usado no cabeçalho, hero, fechamento e favicon |
-| `public/redes-sociais_1.png` | Cena editorial do frasco na seção de experiência |
+| `public/redes-sociais_1.png` | Cena editorial do frasco, sempre exibida inteira em um contêiner quadrado |
 | `public/redes-sociais_2.png` | Monograma sobre fundo café na galeria do Instagram |
 | `public/redes-sociais_3.png` | Assinatura Parfumerie de Contact na galeria do Instagram |
 | `public/redes-sociais_4.png` | Frase da marca na galeria do Instagram |
@@ -166,8 +166,8 @@ atualize simultaneamente o atributo `id` e o `href` correspondente.
 Os movimentos são implementados sem biblioteca externa:
 
 - elementos com `data-reveal` são revelados por `IntersectionObserver`;
-- elementos com `data-parallax` recebem um deslocamento calculado durante a
-  rolagem;
+- elementos selecionados com `data-parallax` recebem um deslocamento calculado
+  durante a rolagem;
 - `requestAnimationFrame` limita as atualizações visuais ao ciclo de pintura do
   navegador;
 - o valor de `data-parallax`, como `0.055`, controla a intensidade do efeito;
@@ -509,12 +509,17 @@ Boas práticas:
 O valor é informado no atributo `data-parallax`:
 
 ```tsx
-<img data-parallax="0.045" src="/redes-sociais_1.png" alt="..." />
+<img data-parallax="0.055" src="/embalagens.png" alt="..." />
 ```
 
 Quanto menor o número, mais discreto o deslocamento. Depois de qualquer
 alteração, teste o início e o fim da seção em diferentes tamanhos de tela para
 garantir que não apareçam áreas vazias.
+
+`redes-sociais_1.png` é uma exceção intencional: ela não deve receber
+`data-parallax`, `object-fit: cover` ou qualquer recorte. A seção editorial
+mantém o contêiner em proporção `1 / 1` e usa `object-fit: contain` para mostrar
+integralmente a peça quadrada em todas as resoluções.
 
 ### Alterar o Instagram ou adicionar WhatsApp/formulário
 
