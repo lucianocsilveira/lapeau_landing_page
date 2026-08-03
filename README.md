@@ -246,7 +246,11 @@ npm ci
 ```
 
 Use `npm install` somente quando estiver adicionando, removendo ou atualizando
-dependências. Em instalações normais e ambientes de CI, prefira `npm ci`.
+dependências. Em uma instalação limpa e em ambientes de CI, prefira `npm ci`.
+
+Depois que as dependências já estiverem instaladas, não é necessário executar
+`npm ci` a cada alteração de texto, CSS ou imagem. Nesses casos, siga direto
+para `npm run build`.
 
 Não há variáveis de ambiente obrigatórias na versão atual.
 
@@ -282,13 +286,23 @@ Para encerrar, pressione `Ctrl+C` no terminal.
 
 ## Build local
 
-Antes de abrir um pull request ou publicar uma atualização:
+Antes de abrir um pull request ou publicar uma atualização, execute:
 
 ```bash
-npm ci
 npm run lint
 npm run build
 ```
+
+Execute `npm ci` **antes** desses comandos somente quando se aplicar pelo menos
+uma das situações abaixo:
+
+- é a primeira vez que o projeto está sendo preparado neste computador;
+- a pasta `node_modules/` ainda não existe;
+- `package.json` ou `package-lock.json` foi alterado;
+- as dependências precisam ser reparadas após uma falha de instalação.
+
+Para mudanças comuns na landing page — textos, imagens, cores, CSS e
+componentes — basta executar `npm run lint` e `npm run build`.
 
 O resultado do build é gravado em `dist/`. Essa pasta é ignorada pelo Git e não
 deve ser adicionada ao repositório.
@@ -326,11 +340,15 @@ substituído, conforme explicado em **Limitações conhecidas**.
    git switch -c feature/nome-da-alteracao
    ```
 
-3. Instale as dependências:
+3. Instale ou atualize as dependências **apenas se necessário**:
 
    ```bash
    npm ci
    ```
+
+   Use esse comando na primeira configuração, depois de alterações nas
+   dependências ou se `node_modules/` precisar ser recriado. Para alterações
+   visuais comuns, pule esta etapa.
 
 4. Desenvolva e revise em `http://localhost:3000`:
 
@@ -390,7 +408,8 @@ Regras importantes:
 
 1. Confirme que a alteração desejada está integrada na branch que será
    publicada.
-2. Execute `npm ci`, `npm run lint` e `npm run build`.
+2. Se as dependências mudaram ou ainda não foram instaladas, execute `npm ci`.
+   Caso contrário, execute apenas `npm run lint` e `npm run build`.
 3. Confirme que não existem arquivos acidentais com `git status`.
 4. Crie e envie o commit ao GitHub.
 5. No Codex, abra este repositório e solicite, por exemplo:
@@ -661,10 +680,29 @@ dados.
 
 ### `npm ci` falha
 
-- confirme a versão do Node.js;
-- apague apenas `node_modules/` e execute `npm ci` novamente;
-- não apague `package-lock.json` para tentar resolver uma instalação comum;
-- verifique acesso à internet e ao registro npm.
+No Windows, um erro `EPERM` ou `unlink` em um arquivo `.node`, como
+`lightningcss.win32-x64-msvc.node`, normalmente significa que o arquivo está
+em uso por um servidor local, editor, antivírus ou outro processo Node.
+
+Siga esta ordem:
+
+1. pare `npm run dev` com `Ctrl+C` no terminal em que ele está em execução;
+2. feche outros terminais que possam estar usando o projeto;
+3. tente `npm ci` novamente;
+4. se o bloqueio continuar, encerre o processo Node relacionado ao projeto pelo
+   Gerenciador de Tarefas;
+5. como último recurso, na pasta raiz deste projeto, apague **somente**
+   `node_modules` e execute `npm ci` novamente:
+
+   ```bat
+   rmdir /s /q node_modules
+   npm ci
+   ```
+
+Não apague `package-lock.json` para resolver uma falha comum e não execute o
+terminal como administrador como primeira tentativa. Para mudanças que não
+alteram dependências, prefira `npm run build` e evite executar `npm ci` sem
+necessidade.
 
 ### A porta 3000 está ocupada
 
