@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 import {
   Bodoni_Moda,
   Cormorant_Garamond,
-  Great_Vibes,
 } from "next/font/google";
 import "./globals.css";
 
@@ -20,13 +19,6 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const greatVibes = Great_Vibes({
-  variable: "--font-script",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
   const host =
@@ -39,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "La Peau — Parfumerie de Contact",
     description:
       "Uma nova casa de perfumes, onde a fragrância encontra a pele. Em breve.",
-    icons: { icon: "/brand-board.png" },
+    icons: { icon: "/monograma-lp.png" },
     openGraph: {
       title: "La Peau — Parfumerie de Contact",
       description: "O perfume encontra a pele. Em breve.",
@@ -71,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${bodoni.variable} ${cormorant.variable} ${greatVibes.variable}`}
+        className={`${bodoni.variable} ${cormorant.variable}`}
       >
         {children}
       </body>

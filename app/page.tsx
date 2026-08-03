@@ -75,11 +75,12 @@ export default function Home() {
     <main>
       <header className="site-header">
         <a className="header-mark" href="#inicio" aria-label="La Peau — início">
-          LP
+          <img src="/monograma-lp.png" alt="" />
         </a>
         <nav aria-label="Navegação principal">
           <a href="#conceito">Conceito</a>
           <a href="#experiencia">Experiência</a>
+          <a href="#instagram">Instagram</a>
           <a className="nav-cta" href="#lancamento">
             Em breve
           </a>
@@ -110,7 +111,11 @@ export default function Home() {
             className="hero-image"
           />
           <div className="hero-veil" />
-          <p className="hero-monogram">LP</p>
+          <img
+            className="hero-monogram"
+            src="/monograma-lp.png"
+            alt=""
+          />
         </div>
 
         <a className="scroll-cue" href="#conceito" aria-label="Ir para o conceito">
@@ -147,7 +152,7 @@ export default function Home() {
           <div className="perfume-crop">
             <img
               data-parallax="0.045"
-              src="/redes-sociais.png"
+              src="/redes-sociais_1.png"
               alt="Frasco La Peau sobre pedra clara com uma pétala rosé"
             />
           </div>
@@ -164,6 +169,65 @@ export default function Home() {
             convida você a desacelerar, sentir e descobrir a fragrância que já
             parecia sua.
           </p>
+        </div>
+      </section>
+
+      <section className="social-stories section-shell" id="instagram">
+        <div className="social-heading" data-reveal>
+          <p className="eyebrow rose">La Peau no Instagram</p>
+          <h2>Fragmentos de uma história que começa agora.</h2>
+          <p>
+            Acompanhe os primeiros gestos, referências e novidades da nossa
+            maison.
+          </p>
+          <a
+            className="instagram-link"
+            href="https://www.instagram.com/lapeau.parfumerie"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Seguir La Peau Parfumerie no Instagram — abre em uma nova aba"
+          >
+            Seguir @lapeau.parfumerie <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div className="social-gallery" data-reveal>
+          <a
+            className="social-card"
+            href="https://www.instagram.com/lapeau.parfumerie"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Visitar o Instagram da La Peau Parfumerie"
+          >
+            <img
+              src="/redes-sociais_2.png"
+              alt="Monograma dourado La Peau sobre fundo café"
+            />
+          </a>
+          <a
+            className="social-card social-card-offset"
+            href="https://www.instagram.com/lapeau.parfumerie"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Visitar o Instagram da La Peau Parfumerie"
+          >
+            <img
+              src="/redes-sociais_3.png"
+              alt="Monograma La Peau e assinatura Parfumerie de Contact"
+            />
+          </a>
+          <a
+            className="social-card"
+            href="https://www.instagram.com/lapeau.parfumerie"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Visitar o Instagram da La Peau Parfumerie"
+          >
+            <img
+              src="/redes-sociais_4.png"
+              alt="O perfume encontra a pele, frase da La Peau"
+            />
+          </a>
         </div>
       </section>
 
@@ -215,7 +279,11 @@ export default function Home() {
 
       <section className="launch" id="lancamento">
         <div className="launch-inner" data-reveal>
-          <p className="launch-script" aria-hidden="true">LP</p>
+          <img
+            className="launch-monogram"
+            src="/monograma-lp.png"
+            alt="Monograma La Peau"
+          />
           <p className="eyebrow">A história está apenas começando</p>
           <h2>Uma nova casa de perfumes está prestes a abrir.</h2>
           <p className="launch-soon">Em breve</p>
@@ -227,7 +295,13 @@ export default function Home() {
 
       <footer>
         <p className="footer-wordmark">LA PEAU</p>
-        <p>Parfumerie de contact</p>
+        <a
+          href="https://www.instagram.com/lapeau.parfumerie"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Instagram · @lapeau.parfumerie
+        </a>
         <p>© 2026 La Peau</p>
       </footer>
     </main>
