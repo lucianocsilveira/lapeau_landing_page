@@ -1,72 +1,12 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
-import {
-  Bodoni_Moda,
-  Cormorant_Garamond,
-} from "next/font/google";
 import "./globals.css";
 
-const bodoni = Bodoni_Moda({
-  variable: "--font-bodoni",
-  subsets: ["latin"],
-  display: "swap",
-});
+export const metadata: Metadata = {
+  title: "LA PEAU | Parfumerie de Contact",
+  description: "Uma perfumaria de contato feita para descobrir fragrâncias com calma.",
+  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+};
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  display: "swap",
-});
-
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host");
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? "https";
-  const origin = host ? `${protocol}://${host}` : "http://localhost:3000";
-
-  return {
-    metadataBase: new URL(origin),
-    title: "La Peau — Parfumerie de Contact",
-    description:
-      "Uma nova casa de perfumes, onde a fragrância encontra a pele. Em breve.",
-    icons: { icon: "/monograma-lp.png" },
-    openGraph: {
-      title: "La Peau — Parfumerie de Contact",
-      description: "O perfume encontra a pele. Em breve.",
-      type: "website",
-      locale: "pt_BR",
-      images: [
-        {
-          url: `${origin}/og.png`,
-          width: 1200,
-          height: 630,
-          alt: "La Peau — Parfumerie de Contact",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "La Peau — Parfumerie de Contact",
-      description: "O perfume encontra a pele. Em breve.",
-      images: [`${origin}/og.png`],
-    },
-  };
-}
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="pt-BR">
-      <body
-        className={`${bodoni.variable} ${cormorant.variable}`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="pt-BR"><body>{children}</body></html>;
 }
