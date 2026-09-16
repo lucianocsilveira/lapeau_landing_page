@@ -1,4 +1,4 @@
 {
-  "framework": "other",
+  "framework": "nitro",
   "buildCommand": "npm run build"
 }
