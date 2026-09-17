@@ -13,6 +13,43 @@ const instagramImages = [
   "/redes-sociais_4.png",
 ];
 
+function useParallax() {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const elements = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-parallax]"),
+    );
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const viewportCenter = window.innerHeight / 2;
+      elements.forEach((element) => {
+        const bounds = element.getBoundingClientRect();
+        const distance =
+          (bounds.top + bounds.height / 2 - viewportCenter) / window.innerHeight;
+        const strength = Number(element.dataset.parallax ?? 22);
+        const offset = Math.max(-1, Math.min(1, distance)) * strength;
+        element.style.setProperty("--parallax-y", `${offset}px`);
+      });
+    };
+
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+}
+
 function Arrow({ direction = "right" }: { direction?: "right" | "down" }) {
   return (
     <span aria-hidden="true" className={`arrow arrow--${direction}`}>
@@ -122,6 +159,7 @@ function Hero() {
         src={hero}
         alt="Frasco de perfume em vidro escuro sobre pedra e seda"
         className="hero-image"
+        data-parallax="34"
       />
       <div className="hero-shade" />
       <div className="hero-content">
@@ -160,6 +198,7 @@ function BrandStory() {
           src={discovery}
           alt="Mãos descobrindo uma fragrância em uma perfumaria"
           loading="lazy"
+          data-parallax="24"
         />
       </div>
       <div className="about-copy">
@@ -235,6 +274,7 @@ function Experience() {
         src={experience}
         alt="Ritual de perfumaria com frascos e pedras naturais"
         loading="lazy"
+        data-parallax="30"
       />
       <div className="experience-overlay" />
       <div className="experience-copy">
@@ -384,6 +424,7 @@ function Footer() {
 }
 
 export function LaPeauLanding() {
+  useParallax();
   return (
     <main>
       <Header />

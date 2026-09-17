@@ -189,6 +189,9 @@ h2 {
   object-fit: cover;
   object-position: center;
   position: absolute;
+  transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.06);
+  transition: transform 180ms ease-out;
+  will-change: transform;
   width: 100%;
   animation: slowReveal 1.2s ease-out both;
 }
@@ -589,6 +592,9 @@ em {
   height: 100%;
   object-fit: cover;
   object-position: 70% center;
+  transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.08);
+  transition: transform 180ms ease-out;
+  will-change: transform;
   width: 100%;
 }
 .about-number {
@@ -686,6 +692,9 @@ em {
   object-fit: cover;
   object-position: center;
   position: absolute;
+  transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.08);
+  transition: transform 180ms ease-out;
+  will-change: transform;
   width: 100%;
 }
 .experience-overlay {
@@ -920,11 +929,9 @@ footer {
 @keyframes slowReveal {
   from {
     opacity: 0.4;
-    transform: scale(1.04);
   }
   to {
     opacity: 1;
-    transform: scale(1);
   }
 }
 @media (max-width: 1050px) {
