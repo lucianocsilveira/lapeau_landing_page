@@ -124,7 +124,7 @@ h2 {
 }
 .header-logo img {
   filter: brightness(0) invert(1);
-  height: 32px;
+  height: 80px;
   object-fit: contain;
   width: 160px;
 }
@@ -984,7 +984,7 @@ footer {
     display: none;
   }
   .header-logo img {
-    height: 25px;
+    height: 60px;
     width: 135px;
   }
   .header-actions {
@@ -1001,6 +1001,9 @@ footer {
     display: grid;
     padding: 0;
     place-items: center;
+    justify-content: start;
+    padding-left: 8px;
+    font-size: x-large;
   }
   .mobile-menu {
     background: #0b0b0b;
@@ -1019,7 +1022,7 @@ footer {
   .mobile-menu nav a {
     border-bottom: 1px solid #29251e;
     font-family: var(--serif);
-    font-size: 1.75rem;
+    font-size: large;
     padding: 0.8rem 0;
   }
   .mobile-instagram {
