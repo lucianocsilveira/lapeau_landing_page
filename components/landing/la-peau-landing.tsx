@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
 
 const instagramUrl = "https://www.instagram.com/lapeau.parfumerie/";
 const logo = "/la-peau-logo.png";
@@ -67,8 +68,14 @@ function Button({
   href?: string;
   outline?: boolean;
 }) {
+  const label = typeof children === "string" ? children : "CTA";
+
   return (
-    <a href={href} className={`button ${outline ? "button--outline" : ""}`}>
+    <a
+      href={href}
+      className={`button ${outline ? "button--outline" : ""}`}
+      onClick={() => track("CTA Clicked", { label, destination: href })}
+    >
       {children}
       <Arrow />
     </a>
@@ -125,6 +132,13 @@ function Header() {
           href={instagramUrl}
           target="_blank"
           rel="noreferrer"
+          onClick={() =>
+            track("CTA Clicked", {
+              label: "Fale conosco",
+              destination: instagramUrl,
+              location: "header",
+            })
+          }
         >
           Fale conosco
         </a>
@@ -143,6 +157,13 @@ function Header() {
             href={instagramUrl}
             target="_blank"
             rel="noreferrer"
+            onClick={() =>
+              track("CTA Clicked", {
+                label: "Instagram",
+                destination: instagramUrl,
+                location: "mobile_menu",
+              })
+            }
           >
             @lapeau.parfumerie
           </a>
