@@ -234,8 +234,9 @@ function BrandStory() {
           escuta.
         </p>
         <p>
-          Nossa loja foi pensada como uma pausa: uma forma mais íntima de
-          descobrir o que combina com você.
+          Nossa loja de perfumes foi pensada como uma pausa: uma forma mais
+          íntima de descobrir perfumes importados, perfumes árabes e
+          fragrâncias que combinam com você.
         </p>
         <div className="signature">
           <img src={logo} alt="LA PEAU" />
@@ -273,6 +274,10 @@ function Curatorship() {
           <br />
           se <em>sente.</em>
         </h2>
+        <p className="section-copy">
+          Perfumes importados e perfumes árabes escolhidos com repertório,
+          intenção e atenção ao que você quer comunicar.
+        </p>
       </div>
       <div className="benefit-grid">
         {items.map(([title, text], index) => (
